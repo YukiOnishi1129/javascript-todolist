@@ -1,7 +1,16 @@
-import { EventEmitter } from '../EventEmitter.js';
+/**
+ * TodoListModel
+ * @package model
+ */
+/* models */
+import { EventEmitterModel } from './EventEmitterModel.js';
+/* utils */
 import { searchResult } from '../utils/common.js';
 
-export class TodoListModel extends EventEmitter {
+/**
+ * TodoListModel
+ */
+export class TodoListModel extends EventEmitterModel {
   constructor(items = [], searchedItems = []) {
     super();
     this.items = items;
@@ -108,6 +117,7 @@ export class TodoListModel extends EventEmitter {
    * @param { title: string }
    */
   searchTodo({ title }) {
+    // 正規表現を用いて、部分一致したTodoのみ表示
     this.searchedItems = this.items.filter((todo) => {
       return searchResult(title, todo.title);
     });

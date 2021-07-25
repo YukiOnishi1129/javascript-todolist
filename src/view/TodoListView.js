@@ -1,6 +1,15 @@
-import { element } from '../utils/html-util.js';
+/**
+ * TodoListView
+ * @package views
+ */
+/* views */
 import { TodoItemView } from './TodoItemView.js';
+/* utils */
+import { element } from '../utils/html-util.js';
 
+/**
+ * TodoListView
+ */
 export class TodoListView {
   /**
    * `todoItems`に対応するTodoリストのHTML要素を作成して返す

@@ -1,5 +1,5 @@
 {
-  "name": "js-primer-todo-practice",
+  "name": "javascript-todolist",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -8,7 +8,6 @@
   },
   "devDependencies": {
     "@js-primer/local-server": "^1.0.2",
-    "http-server": "^0.12.3",
     "prettier": "^2.3.2"
   }
 }

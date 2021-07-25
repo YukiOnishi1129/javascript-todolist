@@ -2,38 +2,42 @@
 <html lang="ja">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Todo App</title>
-    <link href="https://jsprimer.net/use-case/todoapp/final/final/index.css" rel="stylesheet" />
+    <link href="./public/index.css" rel="stylesheet" />
+    <link href="./public/style.css" rel="stylesheet" />
   </head>
 
   <body>
-    <div class="todoapp">
+    <div class="wrapper">
+      <h1 class="title">Todo List</h1>
       <!-- 検索フォーム -->
       <form id="js-search-form">
         <input id="js-search-input" type="text" placeholder="search keyword" />
       </form>
 
-      <!-- id属性をJavaScriptのために指定 -->
-      <form id="js-form">
+      <!-- Todo追加form -->
+      <form id="js-form" class="create-todo">
         <input
           id="js-form-input"
           class="new-todo"
           type="text"
-          placeholder="What need to be done?"
+          placeholder="create todo title"
           autocomplete="off"
         />
       </form>
-      <!-- TodoアプリのメインとなるTodoリスト -->
-      <div id="js-todo-list" class="todo-list">
-        <!-- 動的に更新されるリスト -->
-      </div>
-      <footer class="footer">
+
+      <!-- Todoの総数表示 -->
+      <div class="count-area">
         <!-- Todoアイテム数の表示 -->
         <span id="js-todo-count">Todoアイテム数：0</span>
-      </footer>
+      </div>
+
+      <!-- TodoアプリのメインとなるTodoリスト -->
+      <div id="js-todo-list" class="todolist">
+        <!-- 動的に更新されるリスト -->
+      </div>
     </div>
     <script type="module" src="index.js"></script>
-    <!-- <script type="module" src="/src/sample/TodoListModel.sample.js"></script> -->
-    <!-- <script type="module" src="/src/sample/TodoItemModel.sample.js"></script> -->
   </body>
 </html>

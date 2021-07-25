@@ -8,11 +8,26 @@ import { TodoItemModel } from './model/TodoItemModel.js';
 import { TodoListView } from './view/TodoListView.js';
 import { render } from './utils/html-util.js';
 
+/**
+ * App
+ */
 export class App {
   constructor() {
     // 初期化
     this.todoListView = new TodoListView();
-    this.todoListModel = new TodoListModel();
+    // Todo初期値を設定
+    this.todoListModel = new TodoListModel([
+      {
+        id: 1,
+        title: 'Task1',
+        completed: false,
+      },
+      {
+        id: 2,
+        title: 'Task2',
+        completed: false,
+      },
+    ]);
   }
 
   /**
@@ -59,7 +74,22 @@ export class App {
     // 検索フォームのDOM要素を取得
     const searchInputElement = document.querySelector('#js-search-input');
 
-    // 初期リスナーに保存
+    // Todoリストを初期表示する
+    const todoItems = this.todoListModel.getTodoItems();
+    const todoListElement = this.todoListView.createElement(todoItems, {
+      // Appに定義したリスナー関数を呼び出す
+      onUpdateTodo: ({ id, completed }) => {
+        this.handleUpdate({ id, completed });
+      },
+      onDeleteTodo: ({ id }) => {
+        this.handleDelete({ id });
+      },
+    });
+    render(todoListElement, containerElement);
+    todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
+
+    // リスナーに保存
+    // Todo追加時の処理
     this.todoListModel.onChange(() => {
       const todoItems = this.todoListModel.getTodoItems();
       const todoListElement = this.todoListView.createElement(todoItems, {
@@ -75,6 +105,8 @@ export class App {
       todoItemCountElement.textContent = `Todoアイテム数: ${this.todoListModel.getTotalCount()}`;
     });
 
+    // リスナーに保存
+    // Todo検索時の処理
     this.todoListModel.onSearch(() => {
       const searchedTodoItems = this.todoListModel.getSearchedTodoItems();
       const todoItem =
@@ -107,6 +139,11 @@ export class App {
     // 検索フォーム入力時の処理
     searchInputElement.addEventListener('input', (event) => {
       this.handleSearch(searchInputElement.value);
+    });
+
+    searchFormElement.addEventListener('submit', (event) => {
+      // 検索フォームでエンターをクリックしてもイベント発火を防ぐようにしている
+      event.preventDefault();
     });
   }
 }

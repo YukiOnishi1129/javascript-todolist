@@ -1,19 +1,30 @@
+/**
+ * html-utils
+ * @package utils
+ */
+
+/**
+ * 文字列をエスケープさせる
+ * @param {string} str
+ * @returns
+ */
 export function escapeSpecialChars(str) {
-    return str.replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 /**
  * HTML文字列からHTML要素を作成して返す
- * @param {string} html 
+ * @param {string} html
  */
 export function htmlToElement(html) {
-    const template = document.createElement("template")
-    template.innerHTML = html
-    return template.content.firstElementChild
+  const template = document.createElement('template');
+  template.innerHTML = html;
+  return template.content.firstElementChild;
 }
 
 /**
@@ -21,22 +32,22 @@ export function htmlToElement(html) {
  * @return {Element}
  */
 export function element(strings, ...values) {
-    // reduce
-    // 第1引数: アキュムレーター 累積値
-    // 第2引数: 現在地
-    // 第3引数：現在の添字
-    // 第4引数: 元の配列
-    const htmlString = strings.reduce((result, str, i) => {
-        const value = values[i - 1]
-        if (typeof value === "string") {
-            return result + escapeSpecialChars(value) + str
-        } else {
-            return result + String(value) + str
-        }
-    })
-    
-    return htmlToElement(htmlString)
- }
+  // reduce
+  // 第1引数: アキュムレーター 累積値
+  // 第2引数: 現在地
+  // 第3引数：現在の添字
+  // 第4引数: 元の配列
+  const htmlString = strings.reduce((result, str, i) => {
+    const value = values[i - 1];
+    if (typeof value === 'string') {
+      return result + escapeSpecialChars(value) + str;
+    } else {
+      return result + String(value) + str;
+    }
+  });
+
+  return htmlToElement(htmlString);
+}
 
 /**
  * コンテナ要素の中身をbodyElementで上書きする
@@ -44,8 +55,8 @@ export function element(strings, ...values) {
  * @param {Element} containerElement コンテナ要素
  */
 export function render(bodyElement, containerElement) {
-    // containerElementの中身を空にする
-    containerElement.innerHTML = "";
-    // containerElementの直下にbodyElementを追加する
-    containerElement.appendChild(bodyElement);
+  // containerElementの中身を空にする
+  containerElement.innerHTML = '';
+  // containerElementの直下にbodyElementを追加する
+  containerElement.appendChild(bodyElement);
 }

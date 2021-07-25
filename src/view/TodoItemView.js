@@ -1,5 +1,13 @@
+/**
+ * TodoItemView
+ * @package views
+ */
+/* utils */
 import { element } from '../utils/html-util.js';
 
+/**
+ * TodoItemView
+ */
 export class TodoItemView {
   /**
    * `todoItem`に対応するTodoアイテムのHTML要素を作成して返す
@@ -10,12 +18,12 @@ export class TodoItemView {
    */
   createElement(todoItem, { onUpdateTodo, onDeleteTodo }) {
     const todoItemElement = todoItem.completed
-      ? element`<li><input type="checkbox" class="checkbox" checked>
-                                    <s>${todoItem.title}</s>
+      ? element`<li class="todo"><input type="checkbox" class="checkbox" checked>
+                                    <p class="todo-task-delete">${todoItem.title}</p>
                                     <button class="delete">x</button>
                                 </li>`
-      : element`<li><input type="checkbox" class="checkbox">
-                                    ${todoItem.title}
+      : element`<li class="todo"><input type="checkbox" class="checkbox">
+                                    <p class="todo-task">${todoItem.title}</p>
                                     <button class="delete">x</button>
                                 </li>`;
 
