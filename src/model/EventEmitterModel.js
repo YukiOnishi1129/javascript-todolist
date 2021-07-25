@@ -1,5 +1,10 @@
 /**
  * EventEmitterModel
+ * @package model
+ */
+
+/**
+ * EventEmitterModel
  */
 export class EventEmitterModel {
   constructor() {
