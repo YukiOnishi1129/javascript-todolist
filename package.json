@@ -1,0 +1,14 @@
+{
+  "name": "js-primer-todo-practice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx @js-primer/local-server"
+  },
+  "devDependencies": {
+    "@js-primer/local-server": "^1.0.2",
+    "http-server": "^0.12.3",
+    "prettier": "^2.3.2"
+  }
+}
